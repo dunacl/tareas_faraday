@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Form Members</h3>
+  <div class="box">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="notification is-success">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/members_only">
+      <div class="field">
+        <h2>Pick One</h2><select class="form-control" id="rating" name="rating">
+          {% for element in range(1,101) %}
+              <option value=" {{ element }} ">{{ element }}</option>
+          {% endfor %}
+          </select>
+      </div>
+      <button class="button is-block is-link is-fullwidth">Pick</button>
+    </form>
+  </div>
+  <div>
+    {{ data }}
+  </div>
+</div>
+{% endblock %}
+
